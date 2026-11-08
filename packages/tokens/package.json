@@ -1,0 +1,32 @@
+{
+  "name": "@virtuui/tokens",
+  "version": "0.1.0",
+  "description": "VirtuUI design tokens and themes",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/generate-css.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {}
+}

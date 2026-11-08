@@ -1,0 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { Tabs } from '@virtuui/react';
+const meta = { title: 'Navigation/Tabs', component: Tabs, args: { label: 'Project', items: [{ value: 'overview', label: 'Overview', content: 'Project overview' }, { value: 'activity', label: 'Activity', content: 'Recent activity' }, { value: 'disabled', label: 'Archived', content: 'Archive', disabled: true }, { value: 'settings', label: 'Settings', content: 'Project settings' }] } } satisfies Meta<typeof Tabs>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = { play: async ({ canvasElement }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('tab', { name: 'Overview' })); await userEvent.keyboard('{ArrowRight}'); await expect(canvas.getByRole('tab', { name: 'Activity' })).toHaveAttribute('aria-selected', 'true'); } };
+export const Vertical: Story = { args: { orientation: 'vertical' } };
+export const ManualActivation: Story = { args: { activationMode: 'manual' } };
+export const Empty: Story = { args: { items: [] } };

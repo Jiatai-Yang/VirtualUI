@@ -1,0 +1,13 @@
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { Select } from '@virtuui/react';
+const options = [{ value: 'react', label: 'React' }, { value: 'next', label: 'Next.js' }, { value: 'disabled', label: 'Coming soon', disabled: true }];
+const meta = { title: 'Forms/Select', component: Select, args: { label: 'Framework', options, placeholder: 'Choose a framework' } } satisfies Meta<typeof Select>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = { play: async ({ canvasElement }) => { const select = within(canvasElement).getByRole('combobox'); await userEvent.selectOptions(select, 'react'); await expect(select).toHaveValue('react'); } };
+export const Controlled: Story = { render: function Controlled(args) { const [value, setValue] = useState('next'); return <><Select {...args} value={value} onValueChange={setValue} /><p>Selected: {value}</p></>; } };
+export const Invalid: Story = { args: { error: 'Select a framework.' } };
+export const Disabled: Story = { args: { disabled: true } };
+export const Empty: Story = { args: { options: [], placeholder: 'No options available' } };

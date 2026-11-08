@@ -1,0 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { Input } from '@virtuui/react';
+const meta = { title: 'Forms/Input', component: Input, args: { label: 'Email address', type: 'email', placeholder: 'you@example.com' } } satisfies Meta<typeof Input>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = { play: async ({ canvasElement }) => { const input = within(canvasElement).getByLabelText('Email address'); await userEvent.type(input, 'hello@example.com'); await expect(input).toHaveValue('hello@example.com'); } };
+export const WithHint: Story = { args: { hint: 'We will never share your address.' } };
+export const Invalid: Story = { args: { error: 'Enter a valid email address.', defaultValue: 'not-an-email' } };
+export const Disabled: Story = { args: { disabled: true } };

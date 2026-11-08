@@ -1,0 +1,57 @@
+@import '@virtuui/tokens/styles.css';
+
+.vui-button, .vui-input, .vui-tab, .vui-menu-item { font: inherit; box-sizing: border-box; }
+.vui-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--vui-space-2); border: 1px solid transparent; border-radius: var(--vui-radius-md); font-size: 13px; font-weight: 550; cursor: pointer; transition: background var(--vui-duration-fast), box-shadow var(--vui-duration-fast); white-space: nowrap; }
+.vui-button--md { padding: 10px 16px; min-height: 39px; }
+.vui-button--sm { padding: 7px 12px; min-height: 32px; font-size: 12px; }
+.vui-button--lg { padding: 13px 22px; min-height: 46px; }
+.vui-button--primary { background: var(--vui-color-accent); color: var(--vui-color-surface); }
+.vui-button--primary:hover:not(:disabled) { background: var(--vui-color-accent-hover); }
+.vui-button--secondary { background: var(--vui-color-surface); color: var(--vui-color-text); border-color: var(--vui-color-border); box-shadow: 0 1px 2px #00000005; }
+.vui-button--secondary:hover:not(:disabled), .vui-button--ghost:hover:not(:disabled) { background: var(--vui-color-accent-soft); }
+.vui-button--ghost { background: transparent; color: var(--vui-color-text); }
+.vui-button--danger { background: var(--vui-color-danger); color: var(--vui-color-surface); }
+.vui-button:disabled, .vui-input:disabled, .vui-tab:disabled, .vui-menu-item:disabled { opacity: .45; cursor: not-allowed; }
+.vui-button:focus-visible, .vui-input:focus-visible, .vui-tab:focus-visible, .vui-tabpanel:focus-visible, .vui-menu-item:focus-visible { outline: 2px solid var(--vui-color-focus); outline-offset: 3px; }
+.vui-spinner { width: 12px; height: 12px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: vui-spin .7s linear infinite; }
+@keyframes vui-spin { to { transform: rotate(360deg); } }
+.vui-field { display: flex; flex-direction: column; gap: var(--vui-space-2); width: 100%; }
+.vui-label { font-size: 12px; font-weight: 550; color: var(--vui-color-text); }
+.vui-input { width: 100%; min-width: 0; height: 41px; padding: 10px 12px; border: 1px solid var(--vui-color-border); border-radius: var(--vui-radius-md); color: var(--vui-color-text); background: var(--vui-color-surface); font-size: 13px; }
+.vui-input::placeholder { color: var(--vui-color-muted); opacity: 1; }
+.vui-input[aria-invalid=true] { border-color: var(--vui-color-danger); }
+.vui-hint, .vui-error { font-size: 12px; color: var(--vui-color-muted); }
+.vui-error { color: var(--vui-color-danger); }
+.vui-select-wrap { position: relative; }
+.vui-select { appearance: none; padding-right: 35px; cursor: pointer; }
+.vui-select-chevron { position: absolute; right: 14px; top: 9px; pointer-events: none; color: var(--vui-color-muted); }
+.vui-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: var(--vui-radius-sm); font-size: 10px; font-weight: 550; line-height: 1.3; white-space: nowrap; }
+.vui-badge--neutral { color: var(--vui-color-muted); background: var(--vui-color-background); border: 1px solid var(--vui-color-border); }
+.vui-badge--success { color: var(--vui-color-accent); background: var(--vui-color-accent-soft); border: 1px solid transparent; }
+.vui-badge--danger { color: var(--vui-color-danger); background: var(--vui-color-danger-soft); border: 1px solid transparent; }
+.vui-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.vui-card { background: var(--vui-color-surface); border: 1px solid var(--vui-color-border); border-radius: var(--vui-radius-lg); padding: var(--vui-space-6); color: var(--vui-color-text); }
+.vui-switch { display: inline-flex; align-items: center; gap: var(--vui-space-3); cursor: pointer; font-size: 13px; color: var(--vui-color-text); position: relative; }
+.vui-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.vui-switch-track { width: 34px; height: 20px; flex-shrink: 0; display: inline-flex; align-items: center; padding: 3px; box-sizing: border-box; background: var(--vui-color-border); border-radius: var(--vui-radius-full); transition: background var(--vui-duration-fast); }
+.vui-switch-track span { width: 14px; height: 14px; border-radius: 50%; background: var(--vui-color-surface); box-shadow: 0 1px 2px #0002; transition: transform var(--vui-duration-fast); }
+.vui-switch input:checked + .vui-switch-track { background: var(--vui-color-accent); }
+.vui-switch input:checked + .vui-switch-track span { transform: translateX(14px); }
+.vui-switch input:focus-visible + .vui-switch-track { outline: 2px solid var(--vui-color-focus); outline-offset: 3px; }
+.vui-switch--disabled { opacity: .45; cursor: not-allowed; }
+.vui-tablist { display: flex; gap: var(--vui-space-5); border-bottom: 1px solid var(--vui-color-border); }
+.vui-tab { border: 0; border-bottom: 2px solid transparent; background: transparent; padding: 12px 1px; margin-bottom: -1px; color: var(--vui-color-muted); cursor: pointer; font-size: 13px; white-space: nowrap; }
+.vui-tab[aria-selected=true] { color: var(--vui-color-accent); border-color: var(--vui-color-accent); font-weight: 600; }
+.vui-tabpanel { padding-top: var(--vui-space-5); font-size: 13px; line-height: 1.7; }
+.vui-tabs--vertical { display: flex; gap: var(--vui-space-6); }
+.vui-tabs--vertical .vui-tablist { flex-direction: column; border-bottom: 0; border-right: 1px solid var(--vui-color-border); gap: var(--vui-space-2); }
+.vui-tabs--vertical .vui-tab { text-align: left; padding: 10px 14px; border-bottom: 0; border-right: 2px solid transparent; margin-right: -1px; }
+.vui-tabs--vertical .vui-tab[aria-selected=true] { border-right-color: var(--vui-color-accent); }
+.vui-menu { position: relative; display: inline-block; }
+.vui-menu-list { position: absolute; top: calc(100% + 6px); left: 0; z-index: 30; min-width: 190px; background: var(--vui-color-surface); border: 1px solid var(--vui-color-border); box-shadow: 0 8px 30px #18231615; border-radius: var(--vui-radius-md); padding: 5px; }
+.vui-menu-list--end { left: auto; right: 0; }
+.vui-menu-item { display: flex; align-items: center; gap: 10px; width: 100%; border: 0; background: transparent; color: var(--vui-color-text); padding: 10px; text-align: left; font-size: 13px; cursor: pointer; border-radius: var(--vui-radius-sm); }
+.vui-menu-item:hover:not(:disabled), .vui-menu-item:focus-visible { background: var(--vui-color-accent-soft); }
+.vui-menu-item--danger { color: var(--vui-color-danger); }
+.vui-menu-empty { display: block; padding: 10px; font-size: 12px; color: var(--vui-color-muted); }
+@media (prefers-reduced-motion: reduce) { .vui-button, .vui-switch-track, .vui-switch-track span { transition: none; } .vui-spinner { animation: none; } }

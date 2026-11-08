@@ -1,0 +1,11 @@
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { Switch } from '@virtuui/react';
+const meta = { title: 'Forms/Switch', component: Switch, args: { label: 'Email notifications' } } satisfies Meta<typeof Switch>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = { play: async ({ canvasElement }) => { const control = within(canvasElement).getByRole('switch'); await userEvent.click(control); await expect(control).toBeChecked(); } };
+export const On: Story = { args: { defaultChecked: true } };
+export const Disabled: Story = { args: { disabled: true } };
+export const Controlled: Story = { render: function Controlled(args) { const [checked, setChecked] = useState(false); return <Switch {...args} checked={checked} onCheckedChange={setChecked} />; } };

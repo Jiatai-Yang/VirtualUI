@@ -1,0 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn, userEvent, within } from 'storybook/test';
+import { Button } from '@virtuui/react';
+const meta = { title: 'Actions/Button', component: Button, args: { children: 'Create project', onClick: fn() }, argTypes: { variant: { control: 'select', options: ['primary', 'secondary', 'ghost', 'danger'] }, size: { control: 'select', options: ['sm', 'md', 'lg'] } } } satisfies Meta<typeof Button>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Primary: Story = { play: async ({ canvasElement, args }) => { await userEvent.click(within(canvasElement).getByRole('button')); await expect(args.onClick).toHaveBeenCalled(); } };
+export const Secondary: Story = { args: { variant: 'secondary' } };
+export const Ghost: Story = { args: { variant: 'ghost' } };
+export const Danger: Story = { args: { variant: 'danger', children: 'Delete project' } };
+export const Loading: Story = { args: { loading: true, children: 'Saving changes' } };
+export const Disabled: Story = { args: { disabled: true } };
+export const Sizes: Story = { render: () => <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}><Button size="sm">Small</Button><Button>Medium</Button><Button size="lg">Large</Button></div> };

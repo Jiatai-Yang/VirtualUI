@@ -1,0 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn, userEvent, within } from 'storybook/test';
+import { Menu } from '@virtuui/react';
+const meta = { title: 'Navigation/Menu', component: Menu, args: { label: 'Actions', onAction: fn(), items: [{ value: 'edit', label: 'Edit' }, { value: 'duplicate', label: 'Duplicate' }, { value: 'share', label: 'Share', disabled: true }, { value: 'delete', label: 'Delete', danger: true }] } } satisfies Meta<typeof Menu>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export const Default: Story = { play: async ({ canvasElement, args }) => { const canvas = within(canvasElement); await userEvent.click(canvas.getByRole('button', { name: 'Actions' })); await expect(canvas.getByRole('menuitem', { name: 'Edit' })).toHaveFocus(); await userEvent.keyboard('{ArrowDown}{Enter}'); await expect(args.onAction).toHaveBeenCalledWith('duplicate'); await expect(canvas.getByRole('button', { name: 'Actions' })).toHaveFocus(); } };
+export const Open: Story = { args: { defaultOpen: true } };
+export const AlignedEnd: Story = { args: { align: 'end', defaultOpen: true } };
+export const Empty: Story = { args: { items: [], defaultOpen: true } };
